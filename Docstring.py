@@ -72,9 +72,6 @@ def topMovies(self):
 
 ”””
 
-if __name__ == "__main__": 
-   args = parse_args(sys.argv[1:])
-
 def personality_test(self, score):
     """ Calculates what various levels/scores on the questions of the test mean and what the scores for user are in each personality attribute
 
@@ -93,3 +90,7 @@ Returns:
 	F string: Prints statement that says users scores for each personality attribute.
 	
 """
+
+if __name__ == "__main__": 
+   args = parse_args(sys.argv[1:])
+

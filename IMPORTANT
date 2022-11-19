@@ -1,7 +1,15 @@
-Hi!
-<<<<<<< HEAD
-Hey!
-Hey there!!
-=======
->>>>>>> 4013d5ef08a9d9365fdb44a928be0924d5379369
-Hey!!
+Using filtering to get top movies from a certain genre.
+	Ideas to sort by / find DataFrame with 
+Genre
+Year of Release 
+Director
+Rating
+
+# Ideas for movie databases:
+https://www.imdb.com/
+
+https://gist.github.com/tiangechen/b68782efa49a16edaf07dc2cdaa855ea
+
+https://github.com/topics/movies-dataset
+
+

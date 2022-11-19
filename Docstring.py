@@ -1,13 +1,12 @@
 class PersonalityTest
-  “”” 
+  """
 Class for personality test, the program will ask a series of questions for the user to answer : Very Inaccurate(1), Moderately Inaccurate(2), Neither Accurate(3), Moderately Accurate(4), or Very Accurate (5). It will take the sum of each trait of Extraversion, Agreeableness, Conscientiousness, Emotional Stability, or Neuroticism
 
 Attributes:
   dictofScores (Dict): A dict that holds the personality attribute as keys, and the results/ sums as a value.
-	dictofAnswers (dict): A dict holding the personality attributes as keys, and the list of answers as a value. 
-
-  “””
-	def__init__(questiontextfilepath):
+  dictofAnswers (dict): A dict holding the personality attributes as keys, and the list of answers as a value. 
+ """
+def__init__(questiontextfilepath):
     “”” 
 Will read a text file with 50 questions onto it, and using input will get the writer’s answer will be added to a list of each personality trait. According to the question it will be marked as a negative or positive. Then at the end of the program it will sum each of the lists into a singular int to get the final score for each personality.
 
@@ -38,7 +37,7 @@ Returns:
 	def scatterPlot(self)
 “”” Creates a dataframe of the answers given from dictofAnswers, to plot them onto a scatter plot to show the concentrations of answers in each section
 
-Side Effects: Creates a plot that appears as the program is ran.
+	Side Effects: Creates a plot that appears as the program is ran.
 
 “””
 

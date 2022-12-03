@@ -2,14 +2,15 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 class PersonalityTest():
-    """Class for personality test, the program will ask a series of questions for
-  the user to answer : Very Inaccurate(1), Moderately Inaccurate(2),
-  Neither Accurate(3), Moderately Accurate(4), or Very Accurate (5).
-  It will take the sum of each trait of Extraversion, Agreeableness,
-  Conscientiousness, Emotional Stability, or Neuroticism
-  
-  Attributes: dictofScores (Dict): A dict that holds the personality attribute 
-                as keys, and the results/ sums as a value.
+    """Class for personality test, the program will ask a series of questions 
+        for the user to answer : Very Inaccurate(1), Moderately Inaccurate(2),
+            Neither Accurate(3), Moderately Accurate(4), or Very Accurate (5).
+                It will take the sum of each trait of Extraversion, 
+                    Agreeableness, Conscientiousness, Emotional Stability, or 
+                        Neuroticism
+    Attributes: 
+        dictofScores (Dict): A dict that holds the personality attribute 
+            as keys, and the results/ sums as a value. 
         dictofAnswers (dict): A dict holding the personality attributes as
             keys, and the list of answers as a value. 
     """
@@ -72,7 +73,7 @@ class MovieSorter(PersonalityTest):
     """A class that sets up the organization of the movies that are being 
         used to recommend to the user.
     """
-    def __init__(self, dictofAnswers, dictofScore, dbPathfile):
+    def __init__(self, dictofAnswers, dictofScore):
         """Creates the initialization for organizing what movies will be
         recommended.
         
@@ -84,14 +85,28 @@ class MovieSorter(PersonalityTest):
         """
         self.dictofAnswers = dictofAnswers
         self.dictofScore = dictofScore
-        self.dbPathfile = dbPathfile
+        self.movies = pd.read_csv("imdb_top_1000.csv")
     def topMovies(self):
         """Filters movies and return a dict of movies involving Title as key,
                 and a set of (genre, ranking as a return)
         
-        Return: dictofMovies (dict): A dict of movies with the titles as keys, 
-            and sets of rating and genre as values.
+        Return: finalList (list): A list with dict of movie titles, genres, and
+            rating
         """
+        topFilter = self.movies["IMDB_Rating"] > 8.5
+        finalList = list()
+        df1 = self.movies[topFilter]
+        simple = df1[["Series_Title", "Genre", "IMDB_Rating"]]
+        dictList = simple.to_dict(orient='record')
+        for smallDict in dictList:
+            genre = smallDict["Genre"].split(", ")
+            newDict = dict()
+            newDict["title"] = smallDict["Series_Title"]
+            newDict["genre"] = genre
+            newDict["rating"] = smallDict['IMDB_Rating']
+            finalList.append(newDict)
+        return finalList
+
     def movie_recommend(self, dictofScores):
         """Conditional statements for possible user personality test results 
             (from the personality_user function). The logic for what scores will

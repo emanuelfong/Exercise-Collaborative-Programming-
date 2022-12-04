@@ -46,7 +46,7 @@ class PersonalityTest():
             
      
     
-        self.score = {'Extraversion': E, 'Agreeableness': A, 
+        self.dictofAnswers = {'Extraversion': E, 'Agreeableness': A, 
                       'Conscientiousness' : C, 'Emotional Stability': ES, 
                       "Intellect": I}
     
@@ -95,7 +95,7 @@ class PersonalityTest():
             
         """
         
-        print (f" Your Personality Scores are, Extraversion: ,  Agreeableness: , Emotional Stablity: ,  Conscientiousness: , Intellect and Imagination:  ")
+        print (f" Your Personality Scores are, Extraversion: {self},  Agreeableness: {self}, Emotional Stablity: {self},  Conscientiousness: {self}, Intellect and Imagination: {self} ")
         
     def scatterPlot(self):
         """Creates a dataframe of the answers given from dictofAnswers, to plot 
@@ -122,7 +122,7 @@ class PersonalityTest():
         plt.show()
 
 
-class MovieSorter(PersonalityTest):
+class MovieSorter():
     """A class that sets up the organization of the movies that are being 
         used to recommend to the user.
     """
@@ -160,7 +160,7 @@ class MovieSorter(PersonalityTest):
             finalList.append(newDict)
         return finalList
 
-    def movie_recommend(self, dictofScores):
+    def movie_recommend(self):
         """Conditional statements for possible user personality test results 
             (from the personality_user function). The logic for what scores will
                 recommend what kinds of movies that are sorted in the various
@@ -196,3 +196,8 @@ def personality_user(self):
 
 if __name__ == "__main__": 
    args = parse_args(sys.argv[1:])
+   quiz = PersonalityTest(args)
+   quiz.personality_user
+   quiz.scatterPlot
+   sorter = MovieSorter(quiz.dictofAnswers, quiz.dictofScores)
+   sorter.movie_recommend

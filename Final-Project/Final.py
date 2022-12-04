@@ -39,7 +39,7 @@ class PersonalityTest():
                     break
                 print(next_line.strip())
     
-    def personality_test(self, personalitytextfile, score):
+    def personality_test(self, score):
         """Calculates what various levels/scores on the questions of the test
             mean and what the scores for user are in each personality attribute
         
@@ -60,9 +60,6 @@ class PersonalityTest():
         Returns: F string: Prints statement that says users scores for each 
             personality attribute.
         """
-        
-        print (f" Your Personality Scores are, Extraversion: ,  Agreeableness: , Emotional Stablity: ,  Conscientiousness: , Intellect and Imagination:  ")
-        
     def scatterPlot(self):
         """Creates a dataframe of the answers given from dictofAnswers, to plot 
         them onto a scatter plot to show the concentrations of answers in each 

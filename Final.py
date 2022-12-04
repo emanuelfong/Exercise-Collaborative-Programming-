@@ -51,6 +51,7 @@ class PersonalityTest():
         list of scores - list of scores from the user answering questions to 
             show which personality is the most acceptable.
         """
+       
         
     def personality_user(self):
         """Takes the user's scores from personality_test function and returns 
@@ -59,6 +60,7 @@ class PersonalityTest():
         
         Returns: F string: Prints statement that says users scores for each 
             personality attribute.
+            
         """
         
         print (f" Your Personality Scores are, Extraversion: ,  Agreeableness: , Emotional Stablity: ,  Conscientiousness: , Intellect and Imagination:  ")

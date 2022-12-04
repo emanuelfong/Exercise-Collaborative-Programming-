@@ -14,7 +14,7 @@ class PersonalityTest():
         dictofAnswers (dict): A dict holding the personality attributes as
             keys, and the list of answers as a value. 
     """
-    def __init__(self, questiontextfilepath, extraversion = 0, agreeableness = 0, emotional_stablity = 0, conscientiousness = 0, intellect_imagination = 0):
+    def __init__(self, questiontextfilepath):
         """Will read a text file with 50 questions onto it, and using input 
             will get the writer’s answer will be added to a list of each 
                 personality trait. According to the question it will be marked
@@ -24,20 +24,31 @@ class PersonalityTest():
 
             Agrs: pathfile (str): a txt file that holds the personality test
         """
+        E = []
+        A = []
+        C = []
+        ES = []
+        I = []
         
-        self.extraversion = extraversion
-        self.agreeableness = agreeableness
-        self.emotional_stablity = emotional_stablity
-        self.conscientiousness = conscientiousness
-        self.intellect_imagination = intellect_imagination
-        
-        with open (questiontextfilepath,"r", encoding ="utf-8") as f:
-            while True:
-                next_line = f.readline()
-                
-                if not next_line:
-                    break
-                print(next_line.strip())
+        with open (questiontextfilepath, "r", encoding = "utf-8") as f:
+            for line in f:
+                question = line.split[0]
+                add_or_sub = line.split("," ,2)[1]
+                personality =  line.split("," ,2)[2]
+                ans = input(f"{question} ")
+                if ans is int:
+                    if add_or_sub == "+":
+                        personality.append(ans)
+                    elif add_or_sub == "-":
+                        personality.append(-ans)
+                else:
+                    pass
+            
+     
+    
+        self.dictofAnswers = {'Extraversion': E, 'Agreeableness': A, 
+                      'Conscientiousness' : C, 'Emotional Stability': ES, 
+                      "Intellect": I}
     
     def personality_test(self, personalitytextfile, score):
         """Calculates what various levels/scores on the questions of the test
@@ -63,7 +74,7 @@ class PersonalityTest():
             
         """
         
-        print (f" Your Personality Scores are, Extraversion: ,  Agreeableness: , Emotional Stablity: ,  Conscientiousness: , Intellect and Imagination:  ")
+        print (f" Your Personality Scores are, Extraversion: {self},  Agreeableness: {self}, Emotional Stablity: {self},  Conscientiousness: {self}, Intellect and Imagination: {self} ")
         
     def scatterPlot(self):
         """Creates a dataframe of the answers given from dictofAnswers, to plot 
@@ -90,7 +101,7 @@ class PersonalityTest():
         plt.show()
 
 
-class MovieSorter(PersonalityTest):
+class MovieSorter():
     """A class that sets up the organization of the movies that are being 
         used to recommend to the user.
     """
@@ -128,7 +139,7 @@ class MovieSorter(PersonalityTest):
             finalList.append(newDict)
         return finalList
 
-    def movie_recommend(self, dictofScores):
+    def movie_recommend(self):
         """Conditional statements for possible user personality test results 
             (from the personality_user function). The logic for what scores will
                 recommend what kinds of movies that are sorted in the various
@@ -164,3 +175,8 @@ def personality_user(self):
 
 if __name__ == "__main__": 
    args = parse_args(sys.argv[1:])
+   quiz = PersonalityTest(args)
+   quiz.personality_user
+   quiz.scatterPlot
+   sorter = MovieSorter(quiz.dictofAnswers, quiz.dictofScores)
+   sorter.movie_recommend

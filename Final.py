@@ -39,7 +39,7 @@ class PersonalityTest():
                     break
                 print(next_line.strip())
     
-    def personality_test(self, score):
+    def personality_test(self, personalitytextfile, score):
         """Calculates what various levels/scores on the questions of the test
             mean and what the scores for user are in each personality attribute
         
@@ -51,6 +51,29 @@ class PersonalityTest():
         list of scores - list of scores from the user answering questions to 
             show which personality is the most acceptable.
         """
+        extraversion_score = 0
+        agreeableness_score = 0
+        emotional_stablity_score = 0
+        conscientiousness_score = 0
+        intellect_imagination_score = 0
+        
+        with open (personalitytextfile, "r", encoding = "utf-8") as f:
+            for line in f:
+                add_or_sub = line.split("," ,2)[1]
+                personality =  line.split("," ,2)[2]
+                
+                
+        if add_or_sub == "+":
+            pass
+            
+        elif add_or_sub == "-":
+            pass
+            
+     
+    
+        score = []
+        
+        
     def personality_user(self):
         """Takes the user's scores from personality_test function and returns 
             print statement. 

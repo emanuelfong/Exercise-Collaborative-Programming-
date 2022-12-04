@@ -14,7 +14,7 @@ class PersonalityTest():
         dictofAnswers (dict): A dict holding the personality attributes as
             keys, and the list of answers as a value. 
     """
-    def __init__(self, questiontextfilepath):
+    def __init__(self, questiontextfilepath, extraversion = 0, agreeableness = 0, emotional_stablity = 0, conscientiousness = 0, intellect_imagination = 0):
         """Will read a text file with 50 questions onto it, and using input 
             will get the writer’s answer will be added to a list of each 
                 personality trait. According to the question it will be marked
@@ -24,6 +24,13 @@ class PersonalityTest():
 
             Agrs: pathfile (str): a txt file that holds the personality test
         """
+        
+        self.extraversion = extraversion
+        self.agreeableness = agreeableness
+        self.emotional_stablity = emotional_stablity
+        self.conscientiousness = conscientiousness
+        self.intellect_imagination = intellect_imagination
+        
         with open (questiontextfilepath,"r", encoding ="utf-8") as f:
             while True:
                 next_line = f.readline()

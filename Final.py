@@ -24,6 +24,14 @@ class PersonalityTest():
 
             Agrs: pathfile (str): a txt file that holds the personality test
         """
+        with open (questiontextfilepath,"r", encoding ="utf-8") as f:
+            while True:
+                next_line = f.readline()
+                
+                if not next_line:
+                    break
+                print(next_line.strip())
+    
     def personality_test(self, score):
         """Calculates what various levels/scores on the questions of the test
             mean and what the scores for user are in each personality attribute

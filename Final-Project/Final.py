@@ -65,7 +65,29 @@ class PersonalityTest():
         list of scores - list of scores from the user answering questions to 
             show which personality is the most acceptable.
         """
-       
+        extra = self.dictofScores['Extraversion']
+        agree = self.dictofScores['Agreeableness']
+        con = self.dictofScores['Conscientiousness']
+        emo = self.dictofScores['Emotional Stability']
+        lect = self.dictofScores['Intellect']
+        
+        dom = ""
+        
+        if extra > agree and con and emo and lect:
+            dom = "Extraversion"
+        elif agree > extra and con and emo and lect:
+            dom = "Agreeableness"
+            
+        elif con > extra and agree and emo and lect:
+            dom = "Conscientiousness"
+            
+        elif emo > extra and agree and con and lect:
+            dom = "Emotional Stability"
+            
+        elif lect > extra and agree and con and emo:
+            dom = "Intellect"   
+        
+        return dom 
         
         
     def personality_user(self):

@@ -77,10 +77,15 @@ class PersonalityTest():
             personality attribute.
             
         """
+        extra = self.dictofScores['Extraversion']
+        agree = self.dictofScores['Agreeableness']
+        con = self.dictofScores['Conscientiousness']
+        emo = self.dictofScores['Emotional Stability']
+        lect = self.dictofScores['Intellect']
         
-        print (f" Your Personality Scores are, Extraversion: {self},  "
-               "Agreeableness: {self}, Emotional Stablity: {self}, " 
-               "Conscientiousness: {self}, Intellect and Imagination: {self} ")
+        print (f" Your Personality Scores are, Extraversion: {extra},  "
+               f"Agreeableness: {agree}, Emotional Stablity: {emo}, " 
+               f"Conscientiousness: {con}, Intellect and Imagination: {lect} ")
         
     def scatterPlot(self):
         """Creates a dataframe of the answers given from dictofAnswers, to plot 

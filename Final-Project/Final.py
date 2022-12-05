@@ -181,6 +181,8 @@ class MovieSorter():
         Args: dictofScores (Dict): A dict that holds the personality attribute 
             as keys, and the results/ sums as a value.
     """
+        #in max would be found the personality function also needs lambda function
+    
         personality = max(dictofScores)
         traitgenre = {"Extraversion": "",
                     "Agreeableness": "",

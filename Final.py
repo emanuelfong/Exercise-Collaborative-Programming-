@@ -193,7 +193,6 @@ def personality_user(self):
             attribute.
 	
 """
-
 if __name__ == "__main__": 
    args = parse_args(sys.argv[1:])
    quiz = PersonalityTest(args)

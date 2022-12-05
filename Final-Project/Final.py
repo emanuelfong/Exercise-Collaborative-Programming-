@@ -14,7 +14,7 @@ class PersonalityTest():
         dictofAnswers (dict): A dict holding the personality attributes as
             keys, and the list of answers as a value. 
     """
-    def __init__(self, questiontextfilepath):
+    def __init__(self, questiontextfilepath = 'PersonalityTest.txt'):
         """Will read a text file with 50 questions onto it, and using input 
             will get the writer’s answer will be added to a list of each 
                 personality trait. According to the question it will be marked

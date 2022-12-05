@@ -181,7 +181,14 @@ class MovieSorter():
         Args: dictofScores (Dict): A dict that holds the personality attribute 
             as keys, and the results/ sums as a value.
     """
-
+        personality = max(dictofScores)
+        traitgenre = {"Extraversion": "",
+                    "Agreeableness": "",
+                    "Conscientiousness": "",
+                    "Emotional Stability": "",
+                    "Intellect and Imagination": ""}
+        
+        genre = traitgenre[personality]
 	
 if __name__ == "__main__": 
    args = parse_args(sys.argv[1:])

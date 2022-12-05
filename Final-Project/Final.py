@@ -32,23 +32,26 @@ class PersonalityTest():
         
         with open (questiontextfilepath, "r", encoding = "utf-8") as f:
             for line in f:
+                ans = " "
                 question = line.split[0]
                 add_or_sub = line.split("," ,2)[1]
                 personality =  line.split("," ,2)[2]
                 ans = input(f"{question} ")
-                if ans is int:
-                    if add_or_sub == "+":
-                        personality.append(ans)
-                    elif add_or_sub == "-":
-                        personality.append(-ans)
-                else:
-                    pass
+                #Needs to make sure it is an int.
+                if add_or_sub == "+":
+                    personality.append(ans)
+                elif add_or_sub == "-":
+                    personality.append(-ans)
             
      
     
-        self.score = {'Extraversion': E, 'Agreeableness': A, 
+        self.dictofAnswers = {'Extraversion': E, 'Agreeableness': A, 
                       'Conscientiousness' : C, 'Emotional Stability': ES, 
                       "Intellect": I}
+        
+        self.dictofScores = {'Extraversion': sum(E), 'Agreeableness': sum(A), 
+                      'Conscientiousness' : C, 'Emotional Stability': sum(ES), 
+                      "Intellect": sum(I)}
     
     def personality_test(self, personalitytextfile, score):
         """Calculates what various levels/scores on the questions of the test
@@ -75,7 +78,9 @@ class PersonalityTest():
             
         """
         
-        print (f" Your Personality Scores are, Extraversion: ,  Agreeableness: , Emotional Stablity: ,  Conscientiousness: , Intellect and Imagination:  ")
+        print (f" Your Personality Scores are, Extraversion: {self},  "
+               "Agreeableness: {self}, Emotional Stablity: {self}, " 
+               "Conscientiousness: {self}, Intellect and Imagination: {self} ")
         
     def scatterPlot(self):
         """Creates a dataframe of the answers given from dictofAnswers, to plot 
@@ -102,7 +107,7 @@ class PersonalityTest():
         plt.show()
 
 
-class MovieSorter(PersonalityTest):
+class MovieSorter():
     """A class that sets up the organization of the movies that are being 
         used to recommend to the user.
     """
@@ -150,28 +155,11 @@ class MovieSorter(PersonalityTest):
             as keys, and the results/ sums as a value.
     """
 
-def personality_test(self, score):
-    """ Calculates what various levels/scores on the questions of the test mean
-            and what the scores for user are in each personality attribute
-        
-        Args:
-        Score - How many points the user has finished the questions with. 
-            Each question will give a negative or positive change to the overall
-                score for each list.
-                
-        Returns: list of scores - list of scores from the user answering 
-                    questions to show which personality is the most acceptable.
-"""
-
-def personality_user(self):
-    """Takes the user's scores from personality_test function and returns print
-            statement.
-    Args:
-	    list of strings: the list of user inputs to quiz
-    Returns:
-        F string: Prints statement that says users scores for each personality
-            attribute.
 	
-"""
 if __name__ == "__main__": 
    args = parse_args(sys.argv[1:])
+   quiz = PersonalityTest(args)
+   quiz.personality_user
+   quiz.scatterPlot
+   sorter = MovieSorter(quiz.dictofAnswers, quiz.dictofScores)
+   sorter.movie_recommend

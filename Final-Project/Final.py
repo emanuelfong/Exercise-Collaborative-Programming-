@@ -46,7 +46,7 @@ class PersonalityTest():
             
      
     
-        self.dictofAnswers = {'Extraversion': E, 'Agreeableness': A, 
+        self.score = {'Extraversion': E, 'Agreeableness': A, 
                       'Conscientiousness' : C, 'Emotional Stability': ES, 
                       "Intellect": I}
     
@@ -62,27 +62,7 @@ class PersonalityTest():
         list of scores - list of scores from the user answering questions to 
             show which personality is the most acceptable.
         """
-        extraversion_score = 0
-        agreeableness_score = 0
-        emotional_stablity_score = 0
-        conscientiousness_score = 0
-        intellect_imagination_score = 0
-        
-        with open (personalitytextfile, "r", encoding = "utf-8") as f:
-            for line in f:
-                add_or_sub = line.split("," ,2)[1]
-                personality =  line.split("," ,2)[2]
-                
-                
-        if add_or_sub == "+":
-            pass
-            
-        elif add_or_sub == "-":
-            pass
-            
-     
-    
-        score = []
+       
         
         
     def personality_user(self):
@@ -95,7 +75,7 @@ class PersonalityTest():
             
         """
         
-        print (f" Your Personality Scores are, Extraversion: {self},  Agreeableness: {self}, Emotional Stablity: {self},  Conscientiousness: {self}, Intellect and Imagination: {self} ")
+        print (f" Your Personality Scores are, Extraversion: ,  Agreeableness: , Emotional Stablity: ,  Conscientiousness: , Intellect and Imagination:  ")
         
     def scatterPlot(self):
         """Creates a dataframe of the answers given from dictofAnswers, to plot 
@@ -122,7 +102,7 @@ class PersonalityTest():
         plt.show()
 
 
-class MovieSorter():
+class MovieSorter(PersonalityTest):
     """A class that sets up the organization of the movies that are being 
         used to recommend to the user.
     """
@@ -160,7 +140,7 @@ class MovieSorter():
             finalList.append(newDict)
         return finalList
 
-    def movie_recommend(self):
+    def movie_recommend(self, dictofScores):
         """Conditional statements for possible user personality test results 
             (from the personality_user function). The logic for what scores will
                 recommend what kinds of movies that are sorted in the various
@@ -195,8 +175,3 @@ def personality_user(self):
 """
 if __name__ == "__main__": 
    args = parse_args(sys.argv[1:])
-   quiz = PersonalityTest(args)
-   quiz.personality_user
-   quiz.scatterPlot
-   sorter = MovieSorter(quiz.dictofAnswers, quiz.dictofScores)
-   sorter.movie_recommend

@@ -1,5 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+from argparse import ArgumentParser
+import sys
 
 class PersonalityTest():
     """Class for personality test, the program will ask a series of questions 
@@ -191,7 +193,7 @@ class MovieSorter():
                     "Intellect and Imagination": ""}
         
         genre = traitgenre[personality]
-	
+ 
 if __name__ == "__main__": 
    args = parse_args(sys.argv[1:])
    quiz = PersonalityTest(args)

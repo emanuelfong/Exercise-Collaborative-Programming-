@@ -194,7 +194,7 @@ class MovieSorter():
     """
         #Might be list comprension to make lists specifically of dicts that has a the specific genre
     
-        personality = max(dictofScores)
+        personality = max(dictofScores,key=lambda x: dictofScores[x])
         traitgenre = {"Extraversion": "",
                     "Agreeableness": "",
                     "Conscientiousness": "",

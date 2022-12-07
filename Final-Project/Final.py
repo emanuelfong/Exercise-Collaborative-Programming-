@@ -31,31 +31,52 @@ class PersonalityTest():
         C = []
         ES = []
         I = []
-        
-        with open ('PersonalityTest.txt', "r", encoding = "utf-8") as f:
+                
+        with open ('Final-Project\PersonalityTest.txt', "r", encoding = "utf-8") as f:
             for line in f:
-                ans = " "
-                question = line.split[0]
+                ans = 0
+                question = line.split(",")[0]
                 add_or_sub = line.split("," ,2)[1]
                 personality =  line.split("," ,2)[2]
                 ans = input(f"{question} ")
+                ans = int(ans)
                 #Needs to make sure it is an int.
-                if add_or_sub == "+":
-                    personality.append(ans)
-                elif add_or_sub == "-":
-                    personality.append(-ans)
+                if personality == 'E':
+                    if add_or_sub == "+":
+                        E.append(ans)
+                    elif add_or_sub == "-":
+                        E.append(ans)
+                elif personality == 'A':
+                    if add_or_sub == "+":
+                        A.append(ans)
+                    elif add_or_sub == "-":
+                        A.append(ans)
+                elif personality == 'C':
+                    if add_or_sub == "+":
+                        C.append(ans)
+                    elif add_or_sub == "-":
+                        C.append(ans)
+                elif personality == 'ES':
+                    if add_or_sub == "+":
+                        ES.append(ans)
+                    elif add_or_sub == "-":
+                        ES.append(ans)
+                elif personality == 'I':
+                    if add_or_sub == "+":
+                        I.append(ans)
+                    elif add_or_sub == "-":
+                        I.append(ans)
+                    
             
-     
+        dictofAnswers = {'Extraversion': E, 'Agreeableness': A, 
+                        'Conscientiousness' : C, 'Emotional Stability': ES, 
+                        "Intellect": I}
+                
+        dictofScores = {'Extraversion': sum(E), 'Agreeableness': sum(A), 
+                        'Conscientiousness' : sum(C), 'Emotional Stability': sum(ES), 
+                        "Intellect": sum(I)}
     
-        self.dictofAnswers = {'Extraversion': E, 'Agreeableness': A, 
-                      'Conscientiousness' : C, 'Emotional Stability': ES, 
-                      "Intellect": I}
-        
-        self.dictofScores = {'Extraversion': sum(E), 'Agreeableness': sum(A), 
-                      'Conscientiousness' : C, 'Emotional Stability': sum(ES), 
-                      "Intellect": sum(I)}
-    
-    def personality_test(self, personalitytextfile, score):
+    def personality_test(self):
         """Calculates what various levels/scores on the questions of the test
             mean and what the scores for user are in each personality attribute
         
@@ -67,27 +88,8 @@ class PersonalityTest():
         list of scores - list of scores from the user answering questions to 
             show which personality is the most acceptable.
         """
-        extra = self.dictofScores['Extraversion']
-        agree = self.dictofScores['Agreeableness']
-        con = self.dictofScores['Conscientiousness']
-        emo = self.dictofScores['Emotional Stability']
-        lect = self.dictofScores['Intellect']
-        
-        dom = ""
-        
-        if extra > agree and con and emo and lect:
-            dom = "Extraversion"
-        elif agree > extra and con and emo and lect:
-            dom = "Agreeableness"
-            
-        elif con > extra and agree and emo and lect:
-            dom = "Conscientiousness"
-            
-        elif emo > extra and agree and con and lect:
-            dom = "Emotional Stability"
-            
-        elif lect > extra and agree and con and emo:
-            dom = "Intellect"   
+        #This is not completed, still need to use lamaba/ custom sorting.
+        dom = max(self.dictofScores)
         
         return dom 
         

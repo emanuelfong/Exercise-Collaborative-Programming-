@@ -16,7 +16,7 @@ class PersonalityTest():
         dictofAnswers (dict): A dict holding the personality attributes as
             keys, and the list of answers as a value. 
     """
-    def __init__(self, questiontextfilepath = 'PersonalityTest.txt'):
+    def __init__(self):
         """Will read a text file with 50 questions onto it, and using input 
             will get the writer’s answer will be added to a list of each 
                 personality trait. According to the question it will be marked
@@ -32,7 +32,7 @@ class PersonalityTest():
         ES = []
         I = []
         
-        with open (questiontextfilepath, "r", encoding = "utf-8") as f:
+        with open ('PersonalityTest.txt', "r", encoding = "utf-8") as f:
             for line in f:
                 ans = " "
                 question = line.split[0]
@@ -139,15 +139,24 @@ class PersonalityTest():
 class MovieSorter():
     """A class that sets up the organization of the movies that are being 
         used to recommend to the user.
+        
+        Attributes: 
+            dictofAnswers (dict): A dict holding the personality attributes as
+                keys, and the list of answers as a value. 
+            dictofScores (Dict): A dict that holds the personality attribute 
+                as keys, and the results/ sums as a value. 
+            movies (dataframe): a dataframe of the top 1000 imbd movies
     """
     def __init__(self, dictofAnswers, dictofScore):
         """Creates the initialization for organizing what movies will be
         recommended.
         
-        Args: dictofAnswers (dict): A dict holding the personality attributes as
+        Args:
+            dictofAnswers (dict): A dict holding the personality attributes as
                 keys, and the list of answers as a value. 
-            dbPathfile (str): a string that leads to a pathfile that holds a
-                json file of movies and their genres and ratings.
+            dictofScores (Dict): A dict that holds the personality attribute 
+                as keys, and the results/ sums as a value. 
+                
         Side Effects: Creates a dataframe of movies in self 
         """
         self.dictofAnswers = dictofAnswers
@@ -183,7 +192,7 @@ class MovieSorter():
         Args: dictofScores (Dict): A dict that holds the personality attribute 
             as keys, and the results/ sums as a value.
     """
-        #in max would be found the personality function also needs lambda function
+        #Might be list comprension to make lists specifically of dicts that has a the specific genre
     
         personality = max(dictofScores)
         traitgenre = {"Extraversion": "",
@@ -196,7 +205,7 @@ class MovieSorter():
  
 if __name__ == "__main__": 
    args = parse_args(sys.argv[1:])
-   quiz = PersonalityTest(args)
+   quiz = PersonalityTest()
    quiz.personality_user
    quiz.scatterPlot
    sorter = MovieSorter(quiz.dictofAnswers, quiz.dictofScores)

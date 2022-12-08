@@ -89,9 +89,9 @@ class PersonalityTest():
             show which personality is the most acceptable.
         """
         #This is not completed, still need to use lamaba/ custom sorting.
-        dom = max(self.dictofScores)
+        personality = max(self.dictofScores,key=lambda x: self.dictofScores[x])
         
-        return dom 
+        return personality
         
         
     def personality_user(self):
@@ -185,7 +185,7 @@ class MovieSorter():
             finalList.append(newDict)
         return finalList
 
-    def movie_recommend(self, dictofScores):
+    def movie_recommend(self, dictofScores, personality):
         """Conditional statements for possible user personality test results 
             (from the personality_user function). The logic for what scores will
                 recommend what kinds of movies that are sorted in the various
@@ -195,8 +195,6 @@ class MovieSorter():
             as keys, and the results/ sums as a value.
     """
         #Might be list comprension to make lists specifically of dicts that has a the specific genre
-    
-        personality = max(dictofScores,key=lambda x: dictofScores[x])
         traitgenre = {"Extraversion": "",
                     "Agreeableness": "",
                     "Conscientiousness": "",
@@ -206,9 +204,9 @@ class MovieSorter():
         genre = traitgenre[personality]
  
 if __name__ == "__main__": 
-   args = parse_args(sys.argv[1:])
    quiz = PersonalityTest()
+   person = quiz.personality_test
    quiz.personality_user
    quiz.scatterPlot
    sorter = MovieSorter(quiz.dictofAnswers, quiz.dictofScores)
-   sorter.movie_recommend
+   sorter.movie_recommend(person)

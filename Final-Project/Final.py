@@ -120,6 +120,7 @@ class PersonalityTest():
         
         Side Effects: Creates a plot that appears as the program is ran.
         """
+        #Asher Harman, and this shows usage of seaplots
         type = []
         ans = []
         for key, values in self.dictofScores.items():
@@ -171,6 +172,7 @@ class MovieSorter():
         Return: finalList (list): A list with dict of movie titles, genres, and
             rating
         """
+        #Asher Harman, and this shows working with Pandas
         topFilter = self.movies["IMDB_Rating"] > 8.5
         finalList = list()
         df1 = self.movies[topFilter]

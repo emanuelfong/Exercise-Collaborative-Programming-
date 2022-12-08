@@ -1,0 +1,18 @@
+Documentation:
+The code is meant to be used to identify primary personality traits and suggest movies of specific genre based off of dominant personality traits. To use better, the code can be ran from the console which will then bring up a series of answers and responses. The code will imprompt 50 questions that are to be answered. You should only put the whole numbers between 1 and 5. It will print the results, and show how each answer affected the score using a scatter plot. Then using the dominant personality trait, the program will give the top movie of a genre that fits the personality.
+
+
+Authors:
+Asher Harman: Github Account is HunterK923
+
+
+
+
+
+Source of dataset:
+https://www.kaggle.com/datasets/harshitshankhdhar/imdb-dataset-of-top-1000-movies-and-tv-shows
+
+
+Sources that aided in programming or code used as inspiration:
+https://www.geeksforgeeks.org/
+https://www.w3schools.com/

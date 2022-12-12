@@ -88,7 +88,7 @@ class PersonalityTest():
         list of scores - list of scores from the user answering questions to 
             show which personality is the most acceptable.
         """
-        #This is not completed, still need to use lamaba/ custom sorting.
+        #Check
         personality = max(self.dictofScores,key=lambda x: self.dictofScores[x])
         
         return personality
@@ -103,6 +103,7 @@ class PersonalityTest():
             personality attribute.
             
         """
+        #Kamari Banwaree, collects the scores and prints them in f string f
         extra = self.dictofScores['Extraversion']
         agree = self.dictofScores['Agreeableness']
         con = self.dictofScores['Conscientiousness']

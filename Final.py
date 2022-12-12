@@ -177,7 +177,7 @@ class MovieSorter():
         """
         
         topFilter = self.movies["IMDB_Rating"] > 8.5
-        finalList = list()
+        self.finalList = list()
         df1 = self.movies[topFilter]
         simple = df1[["Series_Title", "Genre", "IMDB_Rating"]]
         dictList = simple.to_dict(orient='record')
@@ -187,8 +187,8 @@ class MovieSorter():
             newDict["title"] = smallDict["Series_Title"]
             newDict["genre"] = genre
             newDict["rating"] = smallDict['IMDB_Rating']
-            finalList.append(newDict)
-        return finalList
+            self.finalList.append(newDict)
+        return self.finalList
 
     def movie_recommend(self, dictofScores, personality):
         """Conditional statements for possible user personality test results 
@@ -208,7 +208,7 @@ class MovieSorter():
                     "Intellect and Imagination": "Horror"}
         
         genre = traitgenre[personality]
-        movielist = [x["title"] for x in finalList if genre in x["genre"]]
+        movielist = [x["title"] for x in self.finalList if genre in x["genre"]]
          
         print(f"The genre for you is {genre}, containing movies such as \
               {movielist}")

@@ -201,7 +201,6 @@ class MovieSorter():
         Args: dictofScores (Dict): A dict that holds the personality attribute 
             as keys, and the results/sums as a value.
     """
-        #Might be list comprehension to make lists specifically of dicts that has a the specific genre
         #Bryce Middleton, list comprehension for top movies in a genre
         traitgenre = {"Extraversion": "Action",
                     "Agreeableness": "Comedy",

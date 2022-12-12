@@ -70,8 +70,9 @@ class PersonalityTest():
         self.dictofAnswers = {'Extraversion': extra, 'Agreeableness': agree, 
                         'Conscientiousness' : con, 'Emotional Stability': emo, 
                         "Intellect": im}
-        self.dictofScores = {'Extraversion': sum(extra), 'Agreeableness': sum(agree), 
-                        'Conscientiousness' : sum(con), 
+        self.dictofScores = {'Extraversion': sum(extra), 
+                            'Agreeableness': sum(agree), 
+                            'Conscientiousness' : sum(con), 
                         'Emotional Stability': sum(emo), "Intellect": sum(im)}
 
     

@@ -194,16 +194,18 @@ class MovieSorter():
                     subcategories.
         
         Args: dictofScores (Dict): A dict that holds the personality attribute 
-            as keys, and the results/ sums as a value.
+            as keys, and the results/sums as a value.
     """
-        #Might be list comprension to make lists specifically of dicts that has a the specific genre
-        traitgenre = {"Extraversion": "",
-                    "Agreeableness": "",
-                    "Conscientiousness": "",
-                    "Emotional Stability": "",
-                    "Intellect and Imagination": ""}
+        #Might be list comprehension to make lists specifically of dicts that has a the specific genre
+        #Bryce Middleton, 
+        traitgenre = {"Extraversion": "Action",
+                    "Agreeableness": "Comedy",
+                    "Conscientiousness": "Drama",
+                    "Emotional Stability": "Romance",
+                    "Intellect and Imagination": "Horror"}
         
         genre = traitgenre[personality]
+        print(f"The genre for you is {genre}!")
  
 if __name__ == "__main__": 
    quiz = PersonalityTest()

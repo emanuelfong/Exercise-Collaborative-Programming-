@@ -31,7 +31,8 @@ class PersonalityTest():
         con = []
         emo = []
         im = []
-        print("Please insert an interger between 1 and 5.")
+        print("Please insert an interger between 1 and 5. With 1 being not "
+              "relating at all, and 5 being relating strongly.")
         with open ('PersonalityTest.txt', "r", encoding = "utf-8") as f:
             for line in f:
                 question = line.split(",")[0]

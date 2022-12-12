@@ -26,6 +26,7 @@ class PersonalityTest():
 
             Agrs: pathfile (str): a txt file that holds the personality test
         """
+        #Uses with (could also potenially work as opitional)
         extra = []
         agree = []
         con = []
@@ -89,7 +90,7 @@ class PersonalityTest():
         list of scores - list of scores from the user answering questions to 
             show which personality is the most acceptable.
         """
-        #Check
+        #Custom Sorting
         personality = max(self.dictofScores,key=lambda x: self.dictofScores[x])
         
         return personality
@@ -175,6 +176,7 @@ class MovieSorter():
         Return: finalList (list): A list with dict of movie titles, genres, and
             rating
         """
+        #Asher Harman and works on Pandas
         
         topFilter = self.movies["IMDB_Rating"] > 8.5
         finalList = list()

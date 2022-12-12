@@ -205,9 +205,10 @@ class MovieSorter():
                     "Intellect and Imagination": "Horror"}
         
         genre = traitgenre[personality]
-        movielist = [x for x in finalList if genre in x["genre"]]
-        
-        print(f"The genre for you is {genre}!")
+        movielist = [x["title"] for x in finalList if genre in x["genre"]]
+         
+        print(f"The genre for you is {genre}, containing movies such as \
+              {movielist}")
 if __name__ == "__main__": 
    quiz = PersonalityTest()
    person = quiz.personality_test

@@ -165,6 +165,7 @@ class MovieSorter():
         self.dictofAnswers = dictofAnswers
         self.dictofScore = dictofScore
         self.movies = pd.read_csv("imdb_top_1000.csv")
+        
     def topMovies(self):
         """Filters movies and return a dict of movies involving Title as key,
                 and a set of (genre, ranking as a return)
@@ -172,7 +173,7 @@ class MovieSorter():
         Return: finalList (list): A list with dict of movie titles, genres, and
             rating
         """
-        #Asher Harman, and this shows working with Pandas
+        
         topFilter = self.movies["IMDB_Rating"] > 8.5
         finalList = list()
         df1 = self.movies[topFilter]

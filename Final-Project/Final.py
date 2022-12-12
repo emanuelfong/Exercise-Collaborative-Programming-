@@ -197,7 +197,7 @@ class MovieSorter():
             as keys, and the results/sums as a value.
     """
         #Might be list comprehension to make lists specifically of dicts that has a the specific genre
-        #Bryce Middleton, 
+        #Bryce Middleton, list comprehension for top movies in a genre
         traitgenre = {"Extraversion": "Action",
                     "Agreeableness": "Comedy",
                     "Conscientiousness": "Drama",
@@ -205,8 +205,9 @@ class MovieSorter():
                     "Intellect and Imagination": "Horror"}
         
         genre = traitgenre[personality]
+        movielist = [x for x in finalList if genre in x["genre"]]
+        
         print(f"The genre for you is {genre}!")
- 
 if __name__ == "__main__": 
    quiz = PersonalityTest()
    person = quiz.personality_test

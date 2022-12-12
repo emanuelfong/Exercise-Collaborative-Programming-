@@ -1,5 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+from argparse import ArgumentParser
+import sys
 
 class PersonalityTest():
     """Class for personality test, the program will ask a series of questions 
@@ -14,7 +16,7 @@ class PersonalityTest():
         dictofAnswers (dict): A dict holding the personality attributes as
             keys, and the list of answers as a value. 
     """
-    def __init__(self, questiontextfilepath):
+    def __init__(self):
         """Will read a text file with 50 questions onto it, and using input 
             will get the writer’s answer will be added to a list of each 
                 personality trait. According to the question it will be marked
@@ -24,36 +26,57 @@ class PersonalityTest():
 
             Agrs: pathfile (str): a txt file that holds the personality test
         """
-        E = []
-        A = []
-        C = []
-        ES = []
-        I = []
-        
-        with open (questiontextfilepath, "r", encoding = "utf-8") as f:
+        extra = []
+        agree = []
+        con = []
+        emo = []
+        im = []
+        print("Please insert an interger between 1 and 5.")
+        with open ('PersonalityTest.txt', "r", encoding = "utf-8") as f:
             for line in f:
-                ans = " "
-                question = line.split[0]
-                add_or_sub = line.split("," ,2)[1]
-                personality =  line.split("," ,2)[2]
+                question = line.split(",")[0]
+                add_or_sub = line.split(",")[1]
+                personality =  line.split(",")[2]
+                personality = personality[0]
                 ans = input(f"{question} ")
-                #Needs to make sure it is an int.
-                if add_or_sub == "+":
-                    personality.append(ans)
-                elif add_or_sub == "-":
-                    personality.append(-ans)
-            
-     
+                ans = int(ans)
+                
+                if personality == 'E':
+                    if add_or_sub == "+":
+                        extra.append(ans)
+                    elif add_or_sub == "-":
+                        extra.append(-abs(ans))
+                elif personality == 'A':
+                    if add_or_sub == "+":
+                        agree.append(ans)
+                    elif add_or_sub == "-":
+                        agree.append(-abs(ans))
+                elif personality == 'C':
+                    if add_or_sub == "+":
+                        con.append(ans)
+                    elif add_or_sub == "-":
+                        con.append(-abs(ans))
+                elif personality == 'S':
+                    if add_or_sub == "+":
+                        emo.append(ans)
+                    elif add_or_sub == "-":
+                        emo.append(-abs(ans))
+                elif personality == 'I':
+                    if add_or_sub == "+":
+                        im.append(ans)
+                    elif add_or_sub == "-":
+                        im.append(-abs(ans))
+                        
+        self.dictofAnswers = {'Extraversion': extra, 'Agreeableness': agree, 
+                        'Conscientiousness' : con, 'Emotional Stability': emo, 
+                        "Intellect": im}
+        self.dictofScores = {'Extraversion': sum(extra), 
+                            'Agreeableness': sum(agree), 
+                            'Conscientiousness' : sum(con), 
+                        'Emotional Stability': sum(emo), "Intellect": sum(im)}
+
     
-        self.dictofAnswers = {'Extraversion': E, 'Agreeableness': A, 
-                      'Conscientiousness' : C, 'Emotional Stability': ES, 
-                      "Intellect": I}
-        
-        self.dictofScores = {'Extraversion': sum(E), 'Agreeableness': sum(A), 
-                      'Conscientiousness' : C, 'Emotional Stability': sum(ES), 
-                      "Intellect": sum(I)}
-    
-    def personality_test(self, personalitytextfile, score):
+    def personality_test(self):
         """Calculates what various levels/scores on the questions of the test
             mean and what the scores for user are in each personality attribute
         
@@ -65,7 +88,10 @@ class PersonalityTest():
         list of scores - list of scores from the user answering questions to 
             show which personality is the most acceptable.
         """
-      
+        #Check
+        personality = max(self.dictofScores,key=lambda x: self.dictofScores[x])
+        
+        return personality
         
         
     def personality_user(self):
@@ -77,10 +103,16 @@ class PersonalityTest():
             personality attribute.
             
         """
-        #add variables {} for users score for each personality
-        print (f" Your Personality Scores are, Extraversion: {self},  "
-               "Agreeableness: {self}, Emotional Stablity: {self}, " 
-               "Conscientiousness: {self}, Intellect and Imagination: {self} ")
+        #Kamari Banwaree, collects the scores and prints them in f string f
+        extra = self.dictofScores['Extraversion']
+        agree = self.dictofScores['Agreeableness']
+        con = self.dictofScores['Conscientiousness']
+        emo = self.dictofScores['Emotional Stability']
+        lect = self.dictofScores['Intellect']
+        
+        print (f" Your Personality Scores are, Extraversion: {extra},  "
+               f"Agreeableness: {agree}, Emotional Stablity: {emo}, " 
+               f"Conscientiousness: {con}, Intellect and Imagination: {lect} ")
         
     def scatterPlot(self):
         """Creates a dataframe of the answers given from dictofAnswers, to plot 
@@ -89,9 +121,10 @@ class PersonalityTest():
         
         Side Effects: Creates a plot that appears as the program is ran.
         """
+        #Asher Harman, and this shows usage of seaplots
         type = []
         ans = []
-        for key, values in self.dictofScores.items():
+        for key, values in self.dictofAnswers.items():
             for value in values:
                 type.append(key)
                 ans.append(value)
@@ -110,20 +143,30 @@ class PersonalityTest():
 class MovieSorter():
     """A class that sets up the organization of the movies that are being 
         used to recommend to the user.
+        
+        Attributes: 
+            dictofAnswers (dict): A dict holding the personality attributes as
+                keys, and the list of answers as a value. 
+            dictofScores (Dict): A dict that holds the personality attribute 
+                as keys, and the results/ sums as a value. 
+            movies (dataframe): a dataframe of the top 1000 imbd movies
     """
     def __init__(self, dictofAnswers, dictofScore):
         """Creates the initialization for organizing what movies will be
         recommended.
-        
-        Args: dictofAnswers (dict): A dict holding the personality attributes as
+         
+        Args:
+            dictofAnswers (dict): A dict holding the personality attributes as
                 keys, and the list of answers as a value. 
-            dbPathfile (str): a string that leads to a pathfile that holds a
-                json file of movies and their genres and ratings.
+            dictofScores (Dict): A dict that holds the personality attribute 
+                as keys, and the results/ sums as a value. 
+                
         Side Effects: Creates a dataframe of movies in self 
         """
         self.dictofAnswers = dictofAnswers
         self.dictofScore = dictofScore
         self.movies = pd.read_csv("imdb_top_1000.csv")
+        
     def topMovies(self):
         """Filters movies and return a dict of movies involving Title as key,
                 and a set of (genre, ranking as a return)
@@ -131,6 +174,7 @@ class MovieSorter():
         Return: finalList (list): A list with dict of movie titles, genres, and
             rating
         """
+        
         topFilter = self.movies["IMDB_Rating"] > 8.5
         finalList = list()
         df1 = self.movies[topFilter]
@@ -145,21 +189,30 @@ class MovieSorter():
             finalList.append(newDict)
         return finalList
 
-    def movie_recommend(self, dictofScores):
+    def movie_recommend(self, dictofScores, personality):
         """Conditional statements for possible user personality test results 
             (from the personality_user function). The logic for what scores will
-                recommend what kinds of movies that are sorted in the various
+               recommend what kinds of movies that are sorted in the various
                     subcategories.
         
         Args: dictofScores (Dict): A dict that holds the personality attribute 
-            as keys, and the results/ sums as a value.
+            as keys, and the results/sums as a value.
     """
-
-	
+        #Might be list comprehension to make lists specifically of dicts that has a the specific genre
+        #Bryce Middleton, list comprehension for top movies in a genre
+        traitgenre = {"Extraversion": "Action",
+                    "Agreeableness": "Comedy",
+                    "Conscientiousness": "Drama",
+                    "Emotional Stability": "Romance",
+                    "Intellect and Imagination": "Horror"}
+        
+        genre = traitgenre[personality]
+        movielist = [x["title"] for x in finalList if genre in x["genre"]]
+         
+        print(f"The genre for you is {genre}, containing movies such as \
+              {movielist}")
 if __name__ == "__main__": 
-   args = parse_args(sys.argv[1:])
-   quiz = PersonalityTest(args)
-   quiz.personality_user
-   quiz.scatterPlot
-   sorter = MovieSorter(quiz.dictofAnswers, quiz.dictofScores)
-   sorter.movie_recommend
+   quiz = PersonalityTest()
+   person = quiz.personality_test()
+   quiz.personality_user()
+   quiz.scatterPlot()

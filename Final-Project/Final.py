@@ -26,55 +26,55 @@ class PersonalityTest():
 
             Agrs: pathfile (str): a txt file that holds the personality test
         """
-        E = []
-        A = []
-        C = []
-        ES = []
-        I = []
-                
-        with open ('Final-Project\PersonalityTest.txt', "r", encoding = "utf-8") as f:
+        extra = []
+        agree = []
+        con = []
+        emo = []
+        im = []
+                        
+        with open ('PersonalityTest.txt', "r", encoding = "utf-8") as f:
             for line in f:
-                ans = 0
                 question = line.split(",")[0]
-                add_or_sub = line.split("," ,2)[1]
-                personality =  line.split("," ,2)[2]
+                add_or_sub = line.split(",")[1]
+                personality =  line.split(",")[2]
+                personality = personality[0]
                 ans = input(f"{question} ")
                 ans = int(ans)
                 #Needs to make sure it is an int.
                 if personality == 'E':
                     if add_or_sub == "+":
-                        E.append(ans)
+                        extra.append(ans)
                     elif add_or_sub == "-":
-                        E.append(ans)
+                        extra.append(-abs(ans))
                 elif personality == 'A':
                     if add_or_sub == "+":
-                        A.append(ans)
+                        agree.append(ans)
                     elif add_or_sub == "-":
-                        A.append(ans)
+                        agree.append(-abs(ans))
                 elif personality == 'C':
                     if add_or_sub == "+":
-                        C.append(ans)
+                        con.append(ans)
                     elif add_or_sub == "-":
-                        C.append(ans)
-                elif personality == 'ES':
+                        con.append(-abs(ans))
+                elif personality == 'S':
                     if add_or_sub == "+":
-                        ES.append(ans)
+                        emo.append(ans)
                     elif add_or_sub == "-":
-                        ES.append(ans)
+                        emo.append(-abs(ans))
                 elif personality == 'I':
                     if add_or_sub == "+":
-                        I.append(ans)
+                        im.append(ans)
                     elif add_or_sub == "-":
-                        I.append(ans)
-                    
-            
-        dictofAnswers = {'Extraversion': E, 'Agreeableness': A, 
-                        'Conscientiousness' : C, 'Emotional Stability': ES, 
-                        "Intellect": I}
-                
-        dictofScores = {'Extraversion': sum(E), 'Agreeableness': sum(A), 
-                        'Conscientiousness' : sum(C), 'Emotional Stability': sum(ES), 
-                        "Intellect": sum(I)}
+                        im.append(-abs(ans))
+                        
+        self.dictofAnswers = {'Extraversion': extra, 'Agreeableness': agree, 
+                        'Conscientiousness' : con, 'Emotional Stability': emo, 
+                        "Intellect": im}
+        self.dictofScores = {'Extraversion': sum(extra), 
+                            'Agreeableness': sum(agree), 
+                            'Conscientiousness' : sum(con), 
+                        'Emotional Stability': sum(emo), "Intellect": sum(im)}
+
     
     def personality_test(self):
         """Calculates what various levels/scores on the questions of the test
@@ -153,7 +153,7 @@ class MovieSorter():
     def __init__(self, dictofAnswers, dictofScore):
         """Creates the initialization for organizing what movies will be
         recommended.
-        
+         
         Args:
             dictofAnswers (dict): A dict holding the personality attributes as
                 keys, and the list of answers as a value. 
@@ -195,17 +195,21 @@ class MovieSorter():
                     subcategories.
         
         Args: dictofScores (Dict): A dict that holds the personality attribute 
-            as keys, and the results/ sums as a value.
+            as keys, and the results/sums as a value.
     """
-        #Might be list comprension to make lists specifically of dicts that has a the specific genre
-        traitgenre = {"Extraversion": "",
-                    "Agreeableness": "",
-                    "Conscientiousness": "",
-                    "Emotional Stability": "",
-                    "Intellect and Imagination": ""}
+        #Might be list comprehension to make lists specifically of dicts that has a the specific genre
+        #Bryce Middleton, list comprehension for top movies in a genre
+        traitgenre = {"Extraversion": "Action",
+                    "Agreeableness": "Comedy",
+                    "Conscientiousness": "Drama",
+                    "Emotional Stability": "Romance",
+                    "Intellect and Imagination": "Horror"}
         
         genre = traitgenre[personality]
- 
+        movielist = [x["title"] for x in finalList if genre in x["genre"]]
+         
+        print(f"The genre for you is {genre}, containing movies such as \
+              {movielist}")
 if __name__ == "__main__": 
    quiz = PersonalityTest()
    person = quiz.personality_test

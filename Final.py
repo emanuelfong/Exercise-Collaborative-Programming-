@@ -152,35 +152,23 @@ class MovieSorter():
                 as keys, and the results/ sums as a value. 
             movies (dataframe): a dataframe of the top 1000 imbd movies
     """
-    def __init__(self, dictofAnswers, dictofScore, csv = "imdb_top_1000.csv"):
+    def __init__(self, csv = "imdb_top_1000.csv"):
         #Bryce Middleton, inclusion of optional parameter and instantiation of 
         #attributes
         """Creates the initialization for organizing what movies will be
         recommended.
          
         Args:
-            dictofAnswers (dict): A dict holding the personality attributes as
-                keys, and the list of answers as a value. 
-            dictofScores (Dict): A dict that holds the personality attribute 
-                as keys, and the results/ sums as a value. 
+            finalList (list): A list of dictionaries containing movie titles,
+                genres, and ratings. 
                 
         Side Effects: Creates a dataframe of movies in self 
         """
-        self.dictofAnswers = dictofAnswers
-        self.dictofScore = dictofScore
-        self.movies = pd.read_csv(csv)
-        
-    def topMovies(self):
-        """Filters movies and return a dict of movies involving Title as key,
-                and a set of (genre, ranking as a return)
-        
-        Return: finalList (list): A list with dict of movie titles, genres, and
-            rating
-        """
-        
-        topFilter = self.movies["IMDB_Rating"] > 8.5
+        movies = pd.read_csv(csv)
+        ##########################
+        topFilter = movies["IMDB_Rating"] > 8.5
         self.finalList = list()
-        df1 = self.movies[topFilter]
+        df1 = movies[topFilter]
         simple = df1[["Series_Title", "Genre", "IMDB_Rating"]]
         dictList = simple.to_dict(orient='record')
         for smallDict in dictList:
@@ -190,9 +178,8 @@ class MovieSorter():
             newDict["genre"] = genre
             newDict["rating"] = smallDict['IMDB_Rating']
             self.finalList.append(newDict)
-        return self.finalList
 
-    def movie_recommend(self, dictofScores, personality):
+    def movie_recommend(self, personality):
         """Conditional statements for possible user personality test results 
             (from the personality_user function). The logic for what scores will
                recommend what kinds of movies that are sorted in the various
@@ -206,7 +193,7 @@ class MovieSorter():
                     "Agreeableness": "Comedy",
                     "Conscientiousness": "Drama",
                     "Emotional Stability": "Romance",
-                    "Intellect and Imagination": "Horror"}
+                    "Intellect": "Horror"}
         
         genre = traitgenre[personality]
         movielist = [x["title"] for x in self.finalList if genre in x["genre"]]
@@ -221,6 +208,5 @@ if __name__ == "__main__":
    quiz.scatterPlot()
    
    movie = MovieSorter()
-   top_movie = movie.topMovies()
-   reccommend = movie.movie_recommend()
+   movie.movie_recommend(person)
    

@@ -172,10 +172,10 @@ class MovieSorter():
         simple = df1[["Series_Title", "Genre", "IMDB_Rating"]]
         dictList = simple.to_dict(orient='record')
         for smallDict in dictList:
-            genre = smallDict["Genre"].split(", ")
+            #genre = smallDict["Genre"].split(", ")
             newDict = dict()
             newDict["title"] = smallDict["Series_Title"]
-            newDict["genre"] = genre
+            newDict["genre"] = smallDict["Genre"]
             newDict["rating"] = smallDict['IMDB_Rating']
             self.finalList.append(newDict)
 
@@ -196,10 +196,10 @@ class MovieSorter():
                     "Intellect": "Horror"}
         
         genre = traitgenre[personality]
-        movielist = [x["title"] for x in self.finalList if x["genre"] == genre]
+        movielist = [x["title"] for x in self.finalList if genre in x["genre"]]
          
-        print(f"The genre for you is {genre}, containing movies such as \
-              {movielist}")
+        print(f"The genre for you is {genre}, containing movies such as "
+            f"{movielist}")
         
 if __name__ == "__main__": 
    quiz = PersonalityTest()

@@ -219,3 +219,8 @@ if __name__ == "__main__":
    person = quiz.personality_test()
    quiz.personality_user()
    quiz.scatterPlot()
+   
+   movie = MovieSorter()
+   top_movie = movie.topMovies()
+   reccommend = movie.movie_recommend()
+   

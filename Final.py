@@ -41,7 +41,7 @@ class PersonalityTest():
                 personality = personality[0]
                 ans = input(f"{question} ")
                 ans = int(ans)
-                
+            #emmanuel    
                 if personality == 'E':
                     if add_or_sub == "+":
                         extra.append(ans)
@@ -89,7 +89,7 @@ class PersonalityTest():
         list of scores - list of scores from the user answering questions to 
             show which personality is the most acceptable.
         """
-        #Check
+        
         personality = max(self.dictofScores,key=lambda x: self.dictofScores[x])
         
         return personality

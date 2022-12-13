@@ -26,8 +26,6 @@ class PersonalityTest():
 
             Agrs: pathfile (str): a txt file that holds the personality test
         """
-        #Uses with (could also potenially work as opitional)
-        #Also uses conditionals
         extra = []
         agree = []
         con = []
@@ -91,7 +89,7 @@ class PersonalityTest():
         list of scores - list of scores from the user answering questions to 
             show which personality is the most acceptable.
         """
-        #Custom Sorting
+        #Check
         personality = max(self.dictofScores,key=lambda x: self.dictofScores[x])
         
         return personality
@@ -154,7 +152,9 @@ class MovieSorter():
                 as keys, and the results/ sums as a value. 
             movies (dataframe): a dataframe of the top 1000 imbd movies
     """
-    def __init__(self, dictofAnswers, dictofScore):
+    def __init__(self, dictofAnswers, dictofScore, csv = "imdb_top_1000.csv"):
+        #Bryce Middleton, inclusion of optional parameter and instantiation of 
+        #attributes
         """Creates the initialization for organizing what movies will be
         recommended.
          
@@ -168,7 +168,7 @@ class MovieSorter():
         """
         self.dictofAnswers = dictofAnswers
         self.dictofScore = dictofScore
-        self.movies = pd.read_csv("imdb_top_1000.csv")
+        self.movies = pd.read_csv(csv)
         
     def topMovies(self):
         """Filters movies and return a dict of movies involving Title as key,
@@ -177,7 +177,6 @@ class MovieSorter():
         Return: finalList (list): A list with dict of movie titles, genres, and
             rating
         """
-        #Asher Harman and works on Pandas
         
         topFilter = self.movies["IMDB_Rating"] > 8.5
         self.finalList = list()
@@ -202,7 +201,6 @@ class MovieSorter():
         Args: dictofScores (Dict): A dict that holds the personality attribute 
             as keys, and the results/sums as a value.
     """
-        #Might be list comprehension to make lists specifically of dicts that has a the specific genre
         #Bryce Middleton, list comprehension for top movies in a genre
         traitgenre = {"Extraversion": "Action",
                     "Agreeableness": "Comedy",
@@ -215,8 +213,14 @@ class MovieSorter():
          
         print(f"The genre for you is {genre}, containing movies such as \
               {movielist}")
+        
 if __name__ == "__main__": 
    quiz = PersonalityTest()
    person = quiz.personality_test()
    quiz.personality_user()
    quiz.scatterPlot()
+   
+   movie = MovieSorter()
+   top_movie = movie.topMovies()
+   reccommend = movie.movie_recommend()
+   

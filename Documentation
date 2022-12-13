@@ -5,10 +5,13 @@ The code is meant to be used to identify primary personality traits and suggest 
 Authors:
 Asher Harman: Github Account is HunterK923
 Kamari Banwaree: Github Account is kamariban
+Bryce Middleton : Github Account is beemid 
+Emanuel Fong: Github Account is emanuelfong
 
 
 How to Use:
 run this in terminal -> python ./Final.py
+Answer all 50 questions with a number (1 to 5)
 
 
 

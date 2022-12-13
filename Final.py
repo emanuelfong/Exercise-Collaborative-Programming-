@@ -193,7 +193,7 @@ class MovieSorter():
                     "Agreeableness": "Comedy",
                     "Conscientiousness": "Drama",
                     "Emotional Stability": "Romance",
-                    "Intellect": "Horror"}
+                    "Intellect": "Crime"}
         
         genre = traitgenre[personality]
         movielist = [x["title"] for x in self.finalList if genre in x["genre"]]

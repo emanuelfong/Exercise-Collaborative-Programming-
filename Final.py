@@ -27,6 +27,7 @@ class PersonalityTest():
             Agrs: pathfile (str): a txt file that holds the personality test
         """
         #Uses with (could also potenially work as opitional)
+        #Also uses conditionals
         extra = []
         agree = []
         con = []

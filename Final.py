@@ -89,7 +89,7 @@ class PersonalityTest():
         list of scores - list of scores from the user answering questions to 
             show which personality is the most acceptable.
         """
-        #Check
+        
         personality = max(self.dictofScores,key=lambda x: self.dictofScores[x])
         
         return personality

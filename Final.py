@@ -41,7 +41,7 @@ class PersonalityTest():
                 personality = personality[0]
                 ans = input(f"{question} ")
                 ans = int(ans)
-                
+            #emmanuel    
                 if personality == 'E':
                     if add_or_sub == "+":
                         extra.append(ans)

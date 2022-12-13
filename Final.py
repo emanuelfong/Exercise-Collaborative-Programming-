@@ -196,7 +196,7 @@ class MovieSorter():
                     "Intellect": "Horror"}
         
         genre = traitgenre[personality]
-        movielist = [x["title"] for x in self.finalList if genre == x["genre"]]
+        movielist = [x["title"] for x in self.finalList if x["genre"] == genre]
          
         print(f"The genre for you is {genre}, containing movies such as \
               {movielist}")
